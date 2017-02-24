@@ -21,13 +21,15 @@ public class Ocr1 {
 	private static boolean useSvm = true;
 
 	
-	//预处理
+	//☆☆☆预处理
 	public static String getAllOcr(String file) throws Exception {
 		//去背景
 		final BufferedImage img = CommonUtil.removeBackgroud(file, whiteThreshold);
 		//切割
 		final List<BufferedImage> listImg = splitImage(img);
+		//验证码模板
 		final Map<BufferedImage, String> map = CommonUtil.loadTrainData(clazz);
+		//useSvm为true时result为"svm_"  false为""
 		String result = useSvm ? "svm_" : "";
 		for (final BufferedImage bi : listImg) {
 			result += getSingleCharOcr(bi, map);
@@ -36,6 +38,7 @@ public class Ocr1 {
 		return result;
 	}
 
+	//☆☆☆☆☆识别（将     切割后的单元块   与   验证码模板    作比较     返回    验证结果）
 	private static String getSingleCharOcr(BufferedImage img, Map<BufferedImage, String> map) throws Exception {
 		if (useSvm) {
 			final String input = new File("img/" + clazz + "/input.txt").getAbsolutePath();
@@ -84,7 +87,7 @@ public class Ocr1 {
 		return subImgs;
 	}
 
-	//识别
+	//main
 	public static void main(String[] args) throws Exception {
 		// ---step1 downloadImage
 		// String url = "http://www.puke888.com/authimg.php";

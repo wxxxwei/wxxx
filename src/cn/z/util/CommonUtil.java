@@ -52,6 +52,7 @@ public class CommonUtil {
 		}
 	}
 
+	//判断像素点为白色
 	public static int isWhite(int colorInt, int whiteThreshold) {
 		final Color color = new Color(colorInt);
 		if (color.getRed() + color.getGreen() + color.getBlue() > whiteThreshold) {
@@ -60,6 +61,7 @@ public class CommonUtil {
 		return 0;
 	}
 
+	//判断像素点为黑色
 	public static int isBlack(int colorInt, int whiteThreshold) {
 		final Color color = new Color(colorInt);
 		if (color.getRed() + color.getGreen() + color.getBlue() <= whiteThreshold) {
@@ -109,6 +111,7 @@ public class CommonUtil {
 		return img;
 	}
 
+	//加载验证码模板
 	public static Map<BufferedImage, String> loadTrainData(String category) throws Exception {
 		final Map<BufferedImage, String> map = new HashMap<BufferedImage, String>();
 		final File dir = new File("train/" + category);

@@ -1,4 +1,4 @@
-# captcha-ocr
+# captcha by wei
 >java 验证码识别
 
->pwntcha部分java实现
+
